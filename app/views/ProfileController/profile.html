@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+	<head>	
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="/public/jquery-3.1.1.js"></script>
+		<script src="/public/materialize/js/materialize.js"></script>
+		<link rel="stylesheet" href="/public/materialize/css/materialize.css" />
+		<link rel="stylesheet" href="/public/stylesheets/animate.css" />
+		<link rel="stylesheet" href="/public/stylesheets/mainPage.css" />
+		<link rel="stylesheet" href="/public/stylesheets/readMore.css" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+	<body>
+		<div id = "background"></div>
+        <div id = "header" class = "row">
+            <div class="col s4">
+                <a id = "username" class = "waves-effect waves-light btn purple">
+                </a>
+            </div>
+            <div id ="name" class="col s4 z-depth-2"><h4>doubleZh Bookstore</h4></div>
+            <div class="col s4">
+               <a class = "waves-effect waves-light btn purple" href = "/logout">logout</a>
+               <a href = "/cartPage" class = "waves-effect waves-light btn purple"><i class = "material-icons left">shopping_cart</i> cart</a>
+            </div>  
+        </div>
+		
+		<div id="profile" class = "container">
+            <div class="row">
+                    <div class="input-field cont col s5 offset-s3">
+                      <input placeholder="Username" id="username_change" type="text" class="validate">
+                    </div>
+                    <button id = "save1" class = "btn col s1"> save </button>
+            </div>
+            
+            <div class="row">
+                    <div class="input-field cont col s5 offset-s3">
+                      <input placeholder="Email" id="email_change" type="text" class="validate">
+                    </div>
+                    <button id = "save2" class = "btn col s1"> save </button>
+            </div>
+            
+            <div class="row">
+                    <div class="input-field cont col s5 offset-s3">
+                      <input placeholder="Phone" id="phone_change" type="text" class="validate">
+                    </div>
+                    <button id = "save3" class = "btn col s1"> save </button>
+            </div>
+            
+            <div class="row">
+                    <div class="input-field cont col s5 offset-s3">
+                      <input placeholder="Address" id="address_change" type="text" class="validate">
+                    </div>
+                    <button id = "save4" class = "btn col s1"> save </button>
+            </div>
+
+            <div class="row">
+                    <div class="input-field cont col s6 offset-s3">
+                      <input placeholder="Old Password" id="password1_change" type="text" class="validate">
+                    </div>
+            </div>
+            
+            <div class="row">
+                    <div class="input-field cont col s5 offset-s3">
+                      <input placeholder="New Password" id="password2_change" type="text" class="validate">
+                    </div>
+                    <button id = "save5" class = "btn col s1"> save </button>
+            </div>
+        </div>		
+		
+		
+		
+		
+		<div id="foot">
+        </div>
+		
+		<script>
+            
+			var isBottom = false;
+        	
+        	
+        	$("#name").click(function(){
+				window.location.href = "/mainPage";
+			});
+        	
+            function UpdatePageInf(){
+            	$.ajax({ 
+					method :  "post",
+	    			url  :  "@{ProfileController.getCustomerInf}",
+	    			success: function(data){
+	    					CustomerInfo = JSON.parse(data.replace(/&quot;/g,'"'));
+	    					$("#username_change").attr("placeholder", CustomerInfo.username);
+	    	                $("#email_change").attr("placeholder", CustomerInfo.email);
+	    	                $("#phone_change").attr("placeholder", CustomerInfo.phone);
+	    	                $("#address_change").attr("placeholder", CustomerInfo.address);
+	    	                $("#username").html(CustomerInfo.email); 
+	    	                $("#username_change").val("");
+	    	                $("#email_change").val("");
+	    	                $("#phone_change").val("");
+	    	                $("#address_change").val("");
+	    	                $("#password1_change").val("");
+	    	                $("#password2_change").val("");
+	    			}
+				});
+            }
+            UpdatePageInf();
+            $("#save1").click(function(){
+                console.log("Hello Change save1");
+                $.ajax({ 
+					method :  "post",
+					data: {username: $("#username_change").val()},
+	    			url  :  "@{ProfileController.changeUsername}",
+	    			success: function(data){
+	    				if (data == "true"){
+	    					UpdatePageInf();
+	    					alert("Username was updated successfully :D");
+	    				}else{
+                            alert("There was a problem with connection :(");
+                        }
+	   				}
+				});
+            });
+                
+            $("#save2").click(function(){
+                console.log("Hello Change save1");
+                $.ajax({ 
+					method :  "post",
+					data: {email: $("#email_change").val()},
+	    			url  :  "@{ProfileController.changeEmail}",
+	    			success: function(data){
+	    				if (data == "true"){
+	    					UpdatePageInf();
+	    					alert("Email was updated successfully :D");
+	    				}else{
+                            alert("There was a problem with connection :(");
+                        }
+	   				}
+				});
+            });
+                
+            $("#save3").click(function(){
+                console.log("Hello Change save1");
+                $.ajax({ 
+					method :  "post",
+					data: {phone: $("#phone_change").val()},
+	    			url  :  "@{ProfileController.changePhone}",
+	    			success: function(data){
+	    				if (data == "true"){
+	    					UpdatePageInf();
+	    					alert("Phone was updated successfully :D");
+	    				}else{
+                            alert("There was a problem with connection :(");
+                        }
+	   				}
+				});
+            });
+                
+            $("#save4").click(function(){
+                console.log("Hello Change save1");
+                $.ajax({ 
+					method :  "post",
+					data: {address: $("#address_change").val()},
+	    			url  :  "@{ProfileController.changeAddress}",
+	    			success: function(data){
+	    				if (data == "true"){
+	    					UpdatePageInf();
+	    					alert("Address was updated successfully :D");
+	    				}else{
+                            alert("There was a problem with connection :(");
+                        }
+	   				}
+				});
+            });
+                
+            $("#save5").click(function(){
+                
+            	console.log("Hello Change save1");
+                
+            	$.ajax({ 
+					method: "post",
+					data: {oldPassword: $("#password1_change").val() , newPassword: $("#password2_change").val() },
+	    			url:  "@{ProfileController.checkPassword}",
+	    			success: function(data){
+	    				if (data == "true"){
+	    					UpdatePageInf();
+	    					alert("Password was updated successfully :D");
+	    				}else{
+                            alert("There was a problem with connection :(");
+                        }
+	   				}
+				});
+            });
+            
+            
+         </script>
+		
+	</body>
+	
+	
+	
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

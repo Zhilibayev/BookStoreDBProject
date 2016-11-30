@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Main Page</title>
+        <script src="/public/jquery-3.1.1.js"></script>	
+        <script src="/public/materialize/js/materialize.js"></script>	
+        <link rel="stylesheet" href="/public/materialize/css/materialize.css"/>
+        <link rel="stylesheet" href="/public/stylesheets/animate.css"/> 
+        <link rel="stylesheet" href="/public/stylesheets/mainPage.css"/> 
+        <link rel="stylesheet" href="/public/stylesheets/readMore.css"/> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+    <body>
+        <script>
+            
+        </script>
+        <div id = "readMore">
+            
+                <div class = "book card z-depth-5"> 
+					<img src = "/public/bookCover/1.jpg"> 
+					<div class = "afterCover"> 
+						<p class = "bookTitle inf"><span class = "tit"><b>Title:</b></span> Pride and prejudice</p> 
+						<p class = "bookAuthor inf"><span class = "tit"><b>Author:</b></span> Jane Austen </p> 
+						<p class = "bookPrice inf"><span class = "tit"><b>Price:</b></span> 2800 KZT </p> 
+						<p class = "bookDescription inf"><span class = "tit"><b>Description:</b></span> Pride and Prejudice is a novel by Jane Austen, first published in 1813. The story follows the main character, Elizabeth Bennet, as she deals with issues of manners, upbringing, morality, education, and marriage in the society of the landed gentry of the British Regency. Elizabeth is the second of five daughters of a country gentleman, Mr Bennet, living in Longbourn. Set in England in the early 19th century, Pride and Prejudice tells the story of Mr and Mrs Bennet's five unmarried daughters after two gentlemen have moved into their neighbourhood: the rich and eligible Mr Bingley, and his status-conscious friend, the even richer and more eligible Mr Darcy. While Bingley takes an immediate liking to the eldest Bennet daughter, Jane, Darcy is disdainful of local society and repeatedly clashes with the Bennets' lively second daughter, Elizabeth. </p> 
+						<a class = "waves-effect waves-light btn teal darken-3"><i class = "material-icons left">shopping_cart</i> Remove From Cart</a> 
+				</div> 
+		
+        </div>
+        </div>
+        <div id = "mainBody">
+        <div id = "background"></div>
+        <div id = "header" class = "row">
+            <div class="col s4">
+                <a id = "username" class = "waves-effect waves-light btn purple"></a>
+            </div>
+            <div id = "name" class = "col s4 z-depth-2"><h4>doubleZh Bookstore</h4></div>
+            <div class="col s4">
+               <a class = "waves-effect waves-light btn purple" href = "/logout">logout</a>
+               <a  href= "/cartPage" class = "waves-effect waves-light btn purple"><i class = "material-icons left">shopping_cart</i> cart</a>
+            </div>  
+        </div>
+        <div class = "row">
+        	<h4 class = "">My Cart</h4>
+        </div>
+        
+        <div id = "main" class="row">
+        </div>
+        
+        <div id = "footer" class = "z-depth-5">     
+            <div id = 'firstDiv'>
+                <p class = "creaters">The project made by </p>
+                <p class = 'detail'>Altyn Zhelambayeva</p>
+                <p class = 'detail'>Serik Zhilibayev</p>   
+            </div>
+            <div id = 'secondDiv'>
+                <p class = "creaters">If you have any questions you can write to</p>
+                <p class = 'detail'>altyn.zhelambayeva@nu.edu.kz</p>
+                <p class = 'detail'>serik.zhilibayev@nu.edu.kz</p>   
+                <p class = "creaters">Special credits to social-catwork made by Sagynysh Baitursinov</p>
+            </div>
+            <div id = "quote" class = "z-depth-5">
+                    <h4>There is no friend </h4>
+                    <h4>as loyal as book</h4>
+                	<h5>Ernest Hemingway</h5>
+            </div>    
+        </div>
+        
+        
+        </div>
+        
+        <script>
+            var idx;
+            var books;
+            getAllBooks();
+            
+            var isBottom = false;
+            var CustomerInfo = JSON.parse("${information}".replace(/&quot;/g,'"'));
+            console.log(CustomerInfo);
+            
+            $("#username").html(CustomerInfo.email); 
+            
+            var last = 0; 
+            var extra = 100;
+            var footer = $("#footer");
+            
+            
+            function newItem(title, author, price, cover, i){
+            	var book = $("<div/>", {
+                    value: i,
+            		class: 'book card'
+            	});
+            	var img = $("<img/>",{
+            		src : '/public/bookCover/' + cover + '.jpg'
+            	});
+            	var afterCover = $("<div/>",{
+            		class :"afterCover"
+            	});
+            	var p1 = $("<p/>",{
+            		class: "bookTitle inf"
+            	});	
+            	p1.html("<span class = 'tit'>Title:</span> " + title);
+            	var p2 = $("<p/>",{
+            		class: "bookTitle inf"
+            	});
+            	p2.html("<span class = 'tit'>Author:</span> " + author);
+            	var p3 = $("<p/>",{
+            		class: "bookTitle inf"
+            	});
+            	p3.html("<span class = 'tit'>Price:</span> " + price);
+            	
+                var a = $("<a/>",{
+                    click: function(){
+                        $("#readMore").css("display","block");
+                        $("#mainBody").css("filter","blur(10px)");
+                        idx = $(this).parent().parent().index();
+                        $("#readMore .bookTitle").html("<span class = 'tit'><b>Title:</b></span> " + books[idx].title);
+                        $("#readMore .bookAuthor").html("<span class = 'tit'><b>Author:</b></span> " + books[idx].aname);
+                        $("#readMore .bookPrice").html("<span class = 'tit'><b>Price:</b></span> " + books[idx].price);
+                        $("#readMore img").css("content", "url("+"/public/bookCover/" + books[idx].isbn + ".jpg)");
+                    },
+            		text: "read more..."
+            	});
+            	
+            	book.append(img);
+            	afterCover.append(p1);
+            	afterCover.append(p2);
+            	afterCover.append(p3);
+            	afterCover.append(a);
+            	book.append(afterCover);
+            	book.addClass("animated fadeInLeft");
+            	$("#main").append(book);
+            }
+            
+            
+            function getAllBooks(){
+					$.ajax({ 
+						method :  "post",
+		    			url  :  "@{CartPageController.getAllBooks}",
+		    			success: function(data){
+		    				$("#main").empty();
+		    				books = [];
+		    				books = JSON.parse(data);
+		    				UpdateBooks();
+		   				}
+					});
+			
+            }
+            
+            function UpdateBooks(){
+            	for (var i = 0; i < books.length; i = i+1){
+            		newItem(books[i].title, books[i].aname, books[i].price, books[i].isbn, i);
+            	}
+            }
+            
+            $(window).scroll(function() {
+
+                var scrolledLength = ( $(window).height() + extra ) + $(window).scrollTop();
+                var documentHeight = $(document).height();
+                
+               if( scrolledLength >= documentHeight ) {
+                   footer.addClass('bottom').stop().animate({ bottom: '0', opacity: '1' }, 300);
+               }
+               else if ( scrolledLength <= documentHeight && footer.hasClass('bottom') ) {           
+                    footer.removeClass('bottom').stop().animate({ bottom: '-100', opacity: '0' }, 300);
+               }
+        	});
+            
+            
+            $("#readMore").click(function(){
+                $("#readMore").css("display","none");
+                $("#mainBody").css("filter","blur(0px)");
+            });
+            
+			$("#readMore a").click(function(){
+                console.log("Hello Add to cart");
+                $.ajax({ 
+					method :  "post",
+					data: {isbn: books[idx].isbn},
+	    			url  :  "@{CartPageController.removeFromCart}",
+	    			success: function(data){
+	    				if (data == "true"){
+	    					getAllBooks();
+	    					alert("The book was removed from cart successfully...");
+	    				}else{
+                            alert("There was a problem with connection...");
+                        }
+	   				}
+				});
+            });
+			
+			$("#name").click(function(){
+				window.location.href = "/mainPage";
+			});
+			$("#username").click(function(){
+				window.location.href = "/profile";
+			});
+			
+        </script>
+    </body>
+</html>
+
+
+

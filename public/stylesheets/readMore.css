@@ -1,0 +1,56 @@
+html{ 
+font-family: GillSans, TimesNewRoman, Trebuchet, sans-serif; 
+} 
+
+#readMore .book img{ 
+height: 108%; 
+width: 40%; 
+border-radius: 25px; 
+padding-top: 0px; 
+padding-bottom: 0px; 
+float: left; 
+} 
+
+#readMore .book { 
+/*margin-left: 5px; */
+width: 1000px; 
+height: 570px; 
+padding: 100px; 
+padding-left: 100px; 
+padding-top: 70px; 
+border-radius: 50px; 
+background-color: RGB(208, 136, 79);
+position: fixed;
+top: 50%;
+left: 50%;
+  /* bring your own prefixes */
+transform: translate(-50%, -50%);
+margin-left: -9px;
+z-index: 10000;
+}
+
+#readMore .btn{ 
+border-radius: 3px; 
+float: right; 
+color:white; 
+/* background-color: RGB(255, 203, 148);*/ 
+} 
+
+#readMore .inf{ 
+color: white; 
+margin: 0px; 
+margin-left: 100px; 
+} 
+
+#readMore .afterCover{ 
+width: 60%; 
+float: left; 
+} 
+
+#readMore .tit{ 
+color: black; 
+}
+
+#readMore .afterCover a{ 
+margin-left: 100px; 
+}

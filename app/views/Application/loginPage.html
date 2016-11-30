@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8">
+		<title>Login To The BookStore</title>
+		<link rel="stylesheet" href="/public/stylesheets/main.css">
+		<script src="/public/javascripts/jquery-1.6.4.min.js" type="text/javascript"></script>
+		<script src="/public/jquery-3.1.1.js"></script>	
+        <script src="/public/materialize/js/materialize.js"></script>	
+        <link rel="stylesheet" href="/public/materialize/css/materialize.css"/>
+        <link rel="stylesheet" href="/public/stylesheets/animate.css"/> 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	</head>
+	
+	<body>
+        
+        <div class="parallax-container">
+            <div class="parallax"><img src="/public/images/1.jpg"></div>
+        </div>
+        
+        <div class="section white">
+            <div class="row container">
+              <h2 class="header">doubleZh Bookstore</h2>
+              <div class="form">
+				<div id = "errorMessages"></div>
+				<input type="email" id="email" placeholder="Please, enter your email"/> <br/>
+				<input type="password" id="password" placeholder="Please, enter your password"/><br/>
+				<button id = "login" class="btn"> Submit </button>
+				<a href="@{Application.registrationPage}">Register</a>
+		      </div>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="/public/images/2.jpg"></div>
+        </div>
+		
+		
+		<script>
+			$("#login").click(function(){
+					
+					var email = $("#email").val();
+					if (email == ""){$("#errorMessages").html("Please Enter Email");return;}
+					var password = $("#password").val();
+					if (password == ""){$("#errorMessages").html("Please Enter Password");return;}
+					
+					var message = {u: email, p : password};
+					var json = JSON.stringify(message);
+					
+					console.log(json);
+					$.ajax({ 
+						method :  "post",
+		    			url  :  "@{Application.requestHandle}",
+		    			data: {tid: json},
+		    			success: function(data){
+		    				if (data = true){window.location.href = "/mainPage";}
+		    				if (data == "false"){$("#errorMessages").html("Login or the password invalid");}
+		   				}
+					});
+			});	
+        $('.parallax').parallax();
+		</script>
+	</body>
+
+</html>
