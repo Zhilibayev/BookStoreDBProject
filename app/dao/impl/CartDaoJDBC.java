@@ -17,12 +17,19 @@ import models.Publisher;
 
 public class CartDaoJDBC { 
 
-	private static final String USER = "root"; 
-	private static final String PASSWORD = "Eeijoqu4x"; 
-	private static final String PORT = "3306"; 
-	private static final String SERVER = "localhost"; 
-	private static final String DATABASE = "dzhstore"; 
-	private static final String DBMS = "mysql"; 
+//	private static final String USER = "root"; 
+//	private static final String PASSWORD = "Eeijoqu4x"; 
+//	private static final String PORT = "3306"; 
+//	private static final String SERVER = "localhost"; 
+//	private static final String DATABASE = "dzhstore"; 
+//	private static final String DBMS = "mysql"; 
+	
+	private static final String USER 		= 	"bfdeaf34174e28"		;
+	private static final String PASSWORD 	= 	"ce5f54a0"	;
+	private static final String PORT 		= 	"3306"		;
+	private static final String SERVER 		= 	"us-cdbr-iron-east-04.cleardb.net"	;
+	private static final String DATABASE 	= 	"heroku_0d7134efafff084";
+	private static final String DBMS 		= 	"mysql"		;
 
 	Connection conn = null; 
 
@@ -52,7 +59,7 @@ public class CartDaoJDBC {
 			stmt.executeUpdate("Insert into cart(book_isbn, customer_cid) values ( '" 
 					+ cart.getBook().getIsbn() + "', " 
 					+ cart.getCustomer().getId() + ");"); 
-			stmt.close(); 
+			 
 			return true; 
 		} catch (SQLException e) { 
 			System.out.println(e.getMessage() + "SQLException when saving a book " + cart.toString()); 
@@ -71,7 +78,7 @@ public class CartDaoJDBC {
 			ResultSet rs = stmt.executeQuery( 
 					"select * from book b join cart c on b.isbn = c.book_isbn where customer_cid = '" + cid + "';"); 
 			transferData(rs, books); 
-			stmt.close(); 
+			 
 			return books; 
 		} catch (SQLException e) { 
 			System.out.println(e.getMessage()); 
@@ -88,7 +95,7 @@ public class CartDaoJDBC {
 			try {
 				Statement stmt = conn.createStatement(); 
 				stmt.executeUpdate("Delete from cart where book_isbn = '"+cart.getBook().getIsbn()+"' and customer_cid ='"+cart.getCustomer().getId()+"';"); 
-				stmt.close(); 
+				 
 				return true; 
 			} catch (SQLException e) { 
 				System.out.println(e.getMessage() + "SQLException when removing a book " + cart.toString()); 

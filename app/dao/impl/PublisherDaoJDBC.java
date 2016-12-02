@@ -14,12 +14,19 @@ import models.Publisher;
 
 public class PublisherDaoJDBC{
 
-	private static final String USER = "root";
-	private static final String PASSWORD = "Eeijoqu4x";
-	private static final String PORT = "3306";
-	private static final String SERVER = "localhost";
-	private static final String DATABASE = "dzhstore";
-	private static final String DBMS = "mysql";
+//	private static final String USER = "root";
+//	private static final String PASSWORD = "Eeijoqu4x";
+//	private static final String PORT = "3306";
+//	private static final String SERVER = "localhost";
+//	private static final String DATABASE = "dzhstore";
+//	private static final String DBMS = "mysql";
+	
+	private static final String USER 		= 	"bfdeaf34174e28"		;
+	private static final String PASSWORD 	= 	"ce5f54a0"	;
+	private static final String PORT 		= 	"3306"		;
+	private static final String SERVER 		= 	"us-cdbr-iron-east-04.cleardb.net"	;
+	private static final String DATABASE 	= 	"heroku_0d7134efafff084";
+	private static final String DBMS 		= 	"mysql"		;
 
 	Connection conn = null;
 
@@ -55,7 +62,7 @@ public class PublisherDaoJDBC{
 					+ publisher.getPhone() + "', '"
 					+ publisher.getUrl() + "');");
 
-			stmt.close();
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -72,7 +79,7 @@ public class PublisherDaoJDBC{
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(query);
-			stmt.close();
+			
 			return true;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + "SQLException when saving an author " + query);
@@ -89,7 +96,7 @@ public class PublisherDaoJDBC{
 			Statement stmt = conn.createStatement(); 
 			ResultSet rs = stmt.executeQuery("select * from publisher where pid = '"+pid+"';");
 			transferData(rs, publishers);
-			stmt.close();
+			
 			return publishers.get(0);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -104,7 +111,7 @@ public class PublisherDaoJDBC{
 			ResultSet rs = stmt.executeQuery(
 					"select * from publisher where name like '%"+name+"%';");
 			transferData(rs, publishers);
-			stmt.close();
+			
 			return publishers;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -118,7 +125,7 @@ public class PublisherDaoJDBC{
 			Statement stmt = conn.createStatement(); 
 			ResultSet rs = stmt.executeQuery("select * from publisher;");
 			transferData(rs, publishers);
-			stmt.close();
+			
 			for (int i = 0; i < publishers.size(); i++){
 				System.out.println(publishers.get(i));
 			}

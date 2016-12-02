@@ -13,11 +13,11 @@ import models.Author;
 
 public class AuthorDaoJDBC{
 
-	private static final String USER 		= 	"root"		;
-	private static final String PASSWORD 	= 	"Eeijoqu4x"	;
+	private static final String USER 		= 	"bfdeaf34174e28"		;
+	private static final String PASSWORD 	= 	"ce5f54a0"	;
 	private static final String PORT 		= 	"3306"		;
-	private static final String SERVER 		= 	"localhost"	;
-	private static final String DATABASE 	= 	"dzhstore"	;
+	private static final String SERVER 		= 	"us-cdbr-iron-east-04.cleardb.net"	;
+	private static final String DATABASE 	= 	"heroku_0d7134efafff084";
 	private static final String DBMS 		= 	"mysql"		;
 
 	Connection conn = null;
@@ -56,7 +56,7 @@ public class AuthorDaoJDBC{
 					+ author.getLname() + "', '" 
 					+ author.getUrl() + "');");
 
-			stmt.close();
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -74,7 +74,7 @@ public class AuthorDaoJDBC{
 
 			stmt.executeUpdate(query);
 
-			stmt.close();
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -101,7 +101,7 @@ public class AuthorDaoJDBC{
 
 			transferData(rs, authors);
 
-			stmt.close();
+			
 
 			return authors.get(0);
 
@@ -129,7 +129,7 @@ public class AuthorDaoJDBC{
 
 			transferData(rs, authors);
 
-			stmt.close();
+			
 
 			return authors;
 
@@ -154,7 +154,7 @@ public class AuthorDaoJDBC{
 					"select * from author where lname like '%"+lname+"%';");
 
 			transferData(rs, authors);
-			stmt.close();
+			
 			return authors;
 
 		} catch (SQLException e) {
@@ -183,7 +183,7 @@ public class AuthorDaoJDBC{
 			
 			transferData(rs, authors);
 
-			stmt.close();
+			
 			for (int i = 0; i < authors.size(); i++){
 				System.out.println(authors.get(i));
 			}

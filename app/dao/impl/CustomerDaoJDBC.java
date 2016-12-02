@@ -16,12 +16,18 @@ import play.Logger;
 
 public class CustomerDaoJDBC {
 	
-	private static final String USER = "root";
-	private static final String PASSWORD = "Eeijoqu4x";
-	private static final String PORT = "3306";
-	private static final String SERVER = "localhost";
-	private static final String DATABASE = "dzhstore";
-	private static final String DBMS = "mysql";
+//	private static final String USER = "root";
+//	private static final String PASSWORD = "Eeijoqu4x";
+//	private static final String PORT = "3306";
+//	private static final String SERVER = "localhost";
+//	private static final String DATABASE = "dzhstore";
+//	private static final String DBMS = "mysql";
+	private static final String USER 		= 	"bfdeaf34174e28"		;
+	private static final String PASSWORD 	= 	"ce5f54a0"	;
+	private static final String PORT 		= 	"3306"		;
+	private static final String SERVER 		= 	"us-cdbr-iron-east-04.cleardb.net"	;
+	private static final String DATABASE 	= 	"heroku_0d7134efafff084";
+	private static final String DBMS 		= 	"mysql"		;
 	
 	Connection conn = null;
 	
@@ -46,7 +52,7 @@ public class CustomerDaoJDBC {
 	
 	
 	public boolean saveCustomer(Customer customer) throws Exception {
-		// TODO Auto-generated method stub
+		
 		if (customer == null) {
 			return false;
 		}
@@ -59,10 +65,11 @@ public class CustomerDaoJDBC {
 								+ customer.getEmail() 		+ "', '"  
 								+ customer.getPhone() 		+ "', '"
 								+ customer.getPassword()	+ "');");
+		//stmt.isCloseOnCompletion();
 			System.out.println("OK It was saved");
-			stmt.close();
+			//
 			return true;
-    	} catch (SQLException e) {
+    	} catch (Exception e) {
 			Logger.info(e.getMessage() + "SQLException when saving a cat " + customer.toString());
 			return false;
 		}
@@ -80,9 +87,9 @@ public class CustomerDaoJDBC {
 			ResultSet rs = stmt.executeQuery(
 	        		"select * from customer where cid = '" + id + "';");
 			transferData(rs, customers);
-			stmt.close();
+			//
 			return customers.get(0);
-    	} catch (SQLException e) {
+    	} catch (Exception e) {
 			Logger.info(e.getMessage());
 			return null;
 		}
@@ -90,7 +97,7 @@ public class CustomerDaoJDBC {
 	}
 
 	
-	public Customer getCustomerByEmail(String email) {
+	public Customer getCustomerByEmail(String email){
 		
 		List<Customer> customers = new ArrayList<Customer>();
 		if (email == null) { // should correct this place
@@ -100,11 +107,11 @@ public class CustomerDaoJDBC {
 			
 			Statement stmt = conn.createStatement(); 
 			ResultSet rs = stmt.executeQuery("select * from customer where email = '" + email + "';");
-			Customer customer = transferData(rs, customers);
-			stmt.close();
+			transferData(rs, customers);
+			//
 			
-			return customer;
-    	} catch (SQLException e) {
+			return customers.get(0);
+    	} catch (Exception e) {
 			Logger.info(e.getMessage());
 			return null;
     	}
@@ -118,7 +125,7 @@ public class CustomerDaoJDBC {
 			Statement stmt = conn.createStatement(); 
 			ResultSet rs = stmt.executeQuery("select * from customer;");
 			transferData(rs, customers);
-			stmt.close();
+			//
 			return customers;
     	} catch (SQLException e) {
 			Logger.info(e.getMessage());
@@ -134,7 +141,7 @@ public class CustomerDaoJDBC {
 		try {
 			Statement stmt = conn.createStatement(); 
 			stmt.executeUpdate("Update customer set username = '"+name+"' where cid = '"+cid+"'"); 
-			stmt.close(); 
+			// 
 			return true; 
 		} catch (SQLException e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the name for customer cid = '"+cid+"'"); 
@@ -150,7 +157,7 @@ public class CustomerDaoJDBC {
 		try {
 			Statement stmt = conn.createStatement(); 
 			stmt.executeUpdate("Update customer set address = '"+address+"' where cid = '"+cid+"'"); 
-			stmt.close(); 
+			 
 			return true; 
 		} catch (SQLException e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the address for customer cid = '"+cid+"'"); 
@@ -166,7 +173,7 @@ public class CustomerDaoJDBC {
 		try {
 			Statement stmt = conn.createStatement(); 
 			stmt.executeUpdate("Update customer set email = '"+email+"' where cid = '"+cid+"'"); 
-			stmt.close(); 
+			 
 			return true; 
 		} catch (SQLException e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the email for customer cid = '"+cid+"'"); 
@@ -182,7 +189,7 @@ public class CustomerDaoJDBC {
 		try {
 			Statement stmt = conn.createStatement(); 
 			stmt.executeUpdate("Update customer set phone = '"+phone+"' where cid = '"+cid+"'"); 
-			stmt.close(); 
+			 
 			return true; 
 		} catch (SQLException e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the phone for customer cid = '"+cid+"'"); 
@@ -198,7 +205,7 @@ public class CustomerDaoJDBC {
 		try {
 			Statement stmt = conn.createStatement(); 
 			stmt.executeUpdate("Update customer set password = '"+password+"' where cid = '"+cid+"'"); 
-			stmt.close(); 
+			 
 			return true; 
 		} catch (SQLException e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the password for customer cid = '"+cid+"'"); 
@@ -209,8 +216,7 @@ public class CustomerDaoJDBC {
 	
 	
 	
-	public Customer transferData(ResultSet rs, List<Customer> customers) throws SQLException{
-		Customer cc = null;
+	public void transferData(ResultSet rs, List<Customer> customers) throws SQLException{
         while (rs.next()) {
         	Customer c = new Customer();
         	c.setId(rs.getInt("cid"));
@@ -220,10 +226,7 @@ public class CustomerDaoJDBC {
         	c.setEmail(rs.getString("email"));
             c.setPassword(rs.getString("password"));
             customers.add(c);
-            cc = c;
-            System.out.println(customers.size());
         }
-        return cc;
 	}
 	
 	

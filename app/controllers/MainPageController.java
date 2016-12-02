@@ -14,11 +14,11 @@ import play.mvc.Controller;
 import java.util.List;
 
 public class MainPageController extends Controller {
-	public static CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
+	//public static CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 	public static Customer customer;
 	public static final String AGR = "\u001B[32m";
-	public static BookDaoJDBC bookDao = new BookDaoJDBC();
-	public static CartDaoJDBC cartDao = new CartDaoJDBC();
+	//public static BookDaoJDBC bookDao = new BookDaoJDBC();
+	//public static CartDaoJDBC cartDao = new CartDaoJDBC();
 	
 	@Before
 	public static void sequrity(){
@@ -29,6 +29,7 @@ public class MainPageController extends Controller {
 	}
 	
 	public static void mainPage() {
+		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		System.out.println("CURRENT PAGE IS MAINPAGE " + AGR);
 		customer = customerDao.getCustomerById(Integer.parseInt(session.get("id")));
 		JsonObject information = customer.convertToJson();
@@ -36,6 +37,7 @@ public class MainPageController extends Controller {
     }
 	
 	public static String getAllBooks(){
+		BookDaoJDBC bookDao = new BookDaoJDBC();
 		System.out.println("Hello");
 		List<Book> books = 	bookDao.getAllBooks();	
 		String json = new Gson().toJson(books);
@@ -44,6 +46,7 @@ public class MainPageController extends Controller {
 	}
 	
 	public static String getBooksByTitle(String title){
+		BookDaoJDBC bookDao = new BookDaoJDBC();
 		System.out.println(title);
 		List<Book> books = 	bookDao.getBookByTitle(title);	
 		String json = new Gson().toJson(books);
@@ -52,6 +55,7 @@ public class MainPageController extends Controller {
 	}
 	
 	public static String getBooksByAuthor(String author){
+		BookDaoJDBC bookDao = new BookDaoJDBC();
 		System.out.println(author);
 		List<Book> books = 	bookDao.getBookByAuthorName(author);	
 		String json = new Gson().toJson(books);
@@ -60,6 +64,7 @@ public class MainPageController extends Controller {
 	}
 	
 	public static String getBooksByISBN(String isbn){
+		BookDaoJDBC bookDao = new BookDaoJDBC();
 		System.out.println(isbn);
 		List<Book> books = bookDao.getBookByIsbnSBS(isbn);	
 		String json = new Gson().toJson(books);
@@ -68,6 +73,7 @@ public class MainPageController extends Controller {
 	}
 	
 	public static String getBooksByPublisher(String publisher){
+		BookDaoJDBC bookDao = new BookDaoJDBC();
 		System.out.println(publisher);
 		List<Book> books = 	bookDao.getBookByPublisher(publisher);	
 		String json = new Gson().toJson(books);
@@ -75,6 +81,7 @@ public class MainPageController extends Controller {
 		return json;	
 	}
 	public static String getBooksByCustomerId(int customer){
+		CartDaoJDBC cartDao = new CartDaoJDBC();
 		System.out.println(customer);
 		List<Book> books = 	cartDao.getBooksByCustomerId(customer);	
 		String json = new Gson().toJson(books);
@@ -82,6 +89,7 @@ public class MainPageController extends Controller {
 		return json;	
 	}
 	public static boolean addToCard(String isbn){
+		CartDaoJDBC cartDao = new CartDaoJDBC();
 		Cart c = new Cart(isbn, Integer.parseInt(session.get("id")));
 		boolean f = cartDao.saveCart(c);
 		System.out.println(f);

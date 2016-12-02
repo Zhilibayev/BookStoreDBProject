@@ -13,13 +13,19 @@ import models.Book;
 import models.Publisher;
 
 public class BookDaoJDBC{
-
-	private static final String USER = "root";
-	private static final String PASSWORD = "Eeijoqu4x";
-	private static final String PORT = "3306";
-	private static final String SERVER = "localhost";
-	private static final String DATABASE = "dzhstore";
-	private static final String DBMS = "mysql";
+	private static final String USER 		= 	"bfdeaf34174e28"		;
+	private static final String PASSWORD 	= 	"ce5f54a0"	;
+	private static final String PORT 		= 	"3306"		;
+	private static final String SERVER 		= 	"us-cdbr-iron-east-04.cleardb.net"	;
+	private static final String DATABASE 	= 	"heroku_0d7134efafff084";
+	private static final String DBMS 		= 	"mysql"		;
+	
+//	private static final String USER = "root";
+//	private static final String PASSWORD = "Eeijoqu4x";
+//	private static final String PORT = "3306";
+//	private static final String SERVER = "localhost";
+//	private static final String DATABASE = "dzhstore";
+//	private static final String DBMS = "mysql";
 
 	Connection conn = null;
 
@@ -61,7 +67,7 @@ public class BookDaoJDBC{
 					+ book.getPid() + "', '"
 					+ book.getAid() + "');");
 			
-			stmt.close();
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -78,7 +84,7 @@ public class BookDaoJDBC{
 			
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(query);	
-			stmt.close();
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -101,7 +107,7 @@ public class BookDaoJDBC{
 			ResultSet rs = stmt.executeQuery(
 					"select * from book where isbn = '"+isbn+"';");
 			transferData(rs, books);
-			stmt.close();
+			
 			return books.get(0);
 
 		} catch (SQLException e) {
@@ -123,7 +129,7 @@ public class BookDaoJDBC{
 			ResultSet rs = stmt.executeQuery(
 					"select * from book where isbn like '%"+isbn+"%';");
 			transferData(rs, books);
-			stmt.close();
+			
 			return books;
 
 		} catch (SQLException e) {
@@ -142,7 +148,7 @@ public class BookDaoJDBC{
 			ResultSet rs = stmt.executeQuery(
 					"select * from book where title like '%"+title+"%';");
 			transferData( rs, books);
-			stmt.close();
+			
 			return books;
 
 		} catch (SQLException e) {
@@ -162,7 +168,7 @@ public class BookDaoJDBC{
 							+ " a.fname like '%"+authorName+"%' "
 							+ "or a.lname like '%"+authorName+"%' or CONCAT(a.fname, ' ', a.lname) like '%"+ authorName +"%';");
 			transferData(rs, books);
-			stmt.close();
+			
 			return books;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -179,7 +185,7 @@ public class BookDaoJDBC{
 					"select distinct * from book b join publisher p on p.pid = b.publisher_pid where "
 					+ " p.name like '%"+publisher+"%';");
 			transferData(rs, books);
-			stmt.close();
+			
 			return books;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -203,7 +209,7 @@ public class BookDaoJDBC{
 			Statement stmt = conn.createStatement(); 
 			ResultSet rs = stmt.executeQuery("select * from book;");
 			transferData(rs, books);
-			stmt.close();
+			
 			
 			for (int i = 0; i < books.size(); i++){
 				System.out.println(books.get(i));
