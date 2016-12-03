@@ -26,7 +26,7 @@ public class AuthorDaoJDBC{
 	private static final String SERVER 		= 	"46.101.171.158"	;
 	private static final String DATABASE 	= 	"serik_zhilibayev_employee";
 	private static final String DBMS 		= 	"mysql"		;
-
+	
 	Connection conn = null;
 
 	public AuthorDaoJDBC() {

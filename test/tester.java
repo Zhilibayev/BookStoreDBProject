@@ -4,7 +4,7 @@ import dao.impl.CustomerDaoJDBC;
 import models.Cart;
 import models.Customer;
 
-public class tester {
+public class tester { 
 
 	public static void main(String[] args) throws Exception {
 		//AuthorDaoJDBC au = new AuthorDaoJDBC();
