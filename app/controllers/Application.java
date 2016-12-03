@@ -17,7 +17,7 @@ import models.*;
 
 public class Application extends Controller {
 	public static final String ACY = "\u001B[36m";
-	
+	public static CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 	
 //	@Before
 //	public static void sequrity(){
@@ -55,7 +55,6 @@ public class Application extends Controller {
     }
     
     public static boolean checkLogin(String email, String password){
-    	CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
     	Customer c = customerDao.getCustomerByEmail(email);
     	System.out.println(c);
     	if (c == null || !c.getPassword().equals(password)){
@@ -74,8 +73,6 @@ public class Application extends Controller {
     }
     
     public static boolean checkNewRegistration(Customer c){
-
-    	CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
     	Customer check = customerDao.getCustomerByEmail(c.getEmail());	
     	if (check == null){
     		try {

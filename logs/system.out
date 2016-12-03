@@ -1,34 +1,5 @@
 Listening for transport dt_socket at address: 8000
-18:12:51,118 INFO  ~ Starting /Users/pk/Desktop/DBProject/project
-18:12:56,134 WARN  ~ You're running Play! in DEV mode
-18:12:57,091 INFO  ~ Listening for HTTP on port 8080 (Waiting a first request to start) ...
+21:13:07,146 INFO  ~ Starting /Users/pk/Desktop/DBProject/project
+21:13:08,282 WARN  ~ You're running Play! in DEV mode
+21:13:08,404 INFO  ~ Listening for HTTP on port 8080 (Waiting a first request to start) ...
 ~ Server is up and running
-18:13:45,898 INFO  ~ Application 'BookStore' is now started !
-18:13:46,270 INFO  ~ SQLException during database connection
-SQLException during database connection
-SQLException during database connection
-18:13:48,381 INFO  ~ SQLException during database connection
-CURRENT PAGE IS LOGIN PAGE [36m
-CURRENT PAGE IS LOGIN PAGE [36m
-The UserInformation: serik.zhilibayev@gmail.com | 0 | 123 | <qwerty123> | 123 | 123
-18:15:38,794 ERROR ~ 
-
-@729405fon
-Internal Server Error (500) for request POST /application/registrationhandle
-
-Execution exception (In /app/dao/impl/CustomerDaoJDBC.java around line 107)
-NullPointerException occured : null
-
-play.exceptions.JavaExecutionException
-	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:229)
-	at Invocation.HTTP Request(Play!)
-Caused by: java.lang.NullPointerException
-	at dao.impl.CustomerDaoJDBC.getCustomerByEmail(CustomerDaoJDBC.java:107)
-	at controllers.Application.checkNewRegistration(Application.java:76)
-	at controllers.Application.registrationHandle(Application.java:71)
-	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:527)
-	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:478)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:454)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:449)
-	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
-	... 1 more

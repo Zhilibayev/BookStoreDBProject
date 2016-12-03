@@ -13,7 +13,7 @@ import play.mvc.Controller;
 import java.util.List;
 
 public class ProfileController extends Controller{
-	//public static CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
+	public static CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 	public static Customer customer;
 //	private String username;
 //	private String address;
@@ -29,7 +29,6 @@ public class ProfileController extends Controller{
 	}
 	
 	public static void profile() {
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		System.out.println("CURRENT PAGE IS PROFILE");
 		customer = customerDao.getCustomerById(Integer.parseInt(session.get("id")));
 		JsonObject information = customer.convertToJson();
@@ -37,32 +36,26 @@ public class ProfileController extends Controller{
     }
 	
 	public static boolean changeUsername(String username){
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		return customerDao.updateCustomerName(Integer.parseInt(session.get("id")), username);
 	}
 	
 	public static JsonObject getCustomerInf(String username){
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		customer = customerDao.getCustomerById(Integer.parseInt(session.get("id")));
 		JsonObject information = customer.convertToJson();
 		return information;
 	}
 	
 	public static boolean changeAddress(String address){
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		return customerDao.updateCustomerAddress(Integer.parseInt(session.get("id")), address);
 	}
 	public static boolean changeEmail(String email){
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		return customerDao.updateCustomerEmail(Integer.parseInt(session.get("id")), email);
 	}
 	public static boolean changePhone(String phone){
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		return customerDao.updateCustomerPhone(Integer.parseInt(session.get("id")), phone);
 	}
 	
 	public static boolean checkPassword(String oldPassword, String newPassword) {
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		Customer cust = customerDao.getCustomerById(Integer.parseInt(session.get("id")));
 		
 		

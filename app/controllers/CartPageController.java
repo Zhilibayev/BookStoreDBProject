@@ -15,11 +15,11 @@ import play.mvc.Before;
 import play.mvc.Controller;
 
 public class CartPageController extends Controller{
-	//public static CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
+	public static CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 	public static Customer customer;
 	public static final String AGR = "\u001B[32m";
-	//public static BookDaoJDBC bookDao = new BookDaoJDBC();
-	//public static CartDaoJDBC cartDao = new CartDaoJDBC();
+	public static BookDaoJDBC bookDao = new BookDaoJDBC();
+	public static CartDaoJDBC cartDao = new CartDaoJDBC();
 	
 	@Before
 	public static void sequrity(){
@@ -29,7 +29,6 @@ public class CartPageController extends Controller{
 	}
 	
 	public static void cartPage() {
-		CustomerDaoJDBC customerDao = new CustomerDaoJDBC(); 
 		System.out.println("CURRENT PAGE IS PROFILE");
 		customer = customerDao.getCustomerById(Integer.parseInt(session.get("id")));
 		JsonObject information = customer.convertToJson();
@@ -37,7 +36,6 @@ public class CartPageController extends Controller{
     }
 	
 	public static String getAllBooks(){
-		CartDaoJDBC cartDao = new CartDaoJDBC();
 		System.out.println("Hello");
 		List<Book> books = 	cartDao.getBooksByCustomerId(Integer.parseInt(session.get("id")));	
 		String json = new Gson().toJson(books);
@@ -45,7 +43,6 @@ public class CartPageController extends Controller{
 		return json;
 	}
 	public static boolean removeFromCart(String isbn){
-		CartDaoJDBC cartDao = new CartDaoJDBC();
 		System.out.println("Hello");
 		Cart c = new Cart(isbn, Integer.parseInt(session.get("id")));
 		return cartDao.removeFromCart(c);

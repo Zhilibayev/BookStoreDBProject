@@ -13,11 +13,18 @@ import models.Author;
 
 public class AuthorDaoJDBC{
 
-	private static final String USER 		= 	"bfdeaf34174e28"		;
-	private static final String PASSWORD 	= 	"ce5f54a0"	;
-	private static final String PORT 		= 	"3306"		;
-	private static final String SERVER 		= 	"us-cdbr-iron-east-04.cleardb.net"	;
-	private static final String DATABASE 	= 	"heroku_0d7134efafff084";
+//	private static final String USER 		= 	"bfdeaf34174e28"		;
+//	private static final String PASSWORD 	= 	"ce5f54a0"	;
+//	private static final String PORT 		= 	"3306"		;
+//	private static final String SERVER 		= 	"us-cdbr-iron-east-04.cleardb.net"	;
+//	private static final String DATABASE 	= 	"heroku_0d7134efafff084";
+//	private static final String DBMS 		= 	"mysql"		;
+	
+	private static final String USER 		= 	"s.zhilibayev"		;
+	private static final String PASSWORD 	= 	"L4ZJZQQ"	;
+	private static final String PORT 		= 	"80"		;
+	private static final String SERVER 		= 	"46.101.171.158"	;
+	private static final String DATABASE 	= 	"serik_zhilibayev_employee";
 	private static final String DBMS 		= 	"mysql"		;
 
 	Connection conn = null;
