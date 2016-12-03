@@ -39,7 +39,7 @@ public class BookDaoJDBC{
 	public BookDaoJDBC() {
 		try {
 			conn = getConnection();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println("SQLException during database connection");
 		}
 	}
@@ -77,7 +77,7 @@ public class BookDaoJDBC{
 			
 			return true;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving a book " + book.toString());
 			return false;
 		}
@@ -94,7 +94,7 @@ public class BookDaoJDBC{
 			
 			return true;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving a book " + query);
 			return false;
 		}
@@ -117,7 +117,7 @@ public class BookDaoJDBC{
 			
 			return books.get(0);
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -139,7 +139,7 @@ public class BookDaoJDBC{
 			
 			return books;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -158,7 +158,7 @@ public class BookDaoJDBC{
 			
 			return books;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -177,7 +177,7 @@ public class BookDaoJDBC{
 			transferData(rs, books);
 			
 			return books;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -194,7 +194,7 @@ public class BookDaoJDBC{
 			transferData(rs, books);
 			
 			return books;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -224,7 +224,7 @@ public class BookDaoJDBC{
 			return books;
 
 		} catch
-		(SQLException e) {
+		(Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}

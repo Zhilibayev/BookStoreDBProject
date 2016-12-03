@@ -25,7 +25,7 @@ public class WrittenByDaoJDBC {
 	public WrittenByDaoJDBC() {
 		try {
 			conn = getConnection();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println("SQLException during database connection");
 		}
 	}
@@ -51,7 +51,7 @@ public class WrittenByDaoJDBC {
 			
 			stmt.close();
 			return true;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving an author ");
 			return false;
 		}
@@ -67,7 +67,7 @@ public class WrittenByDaoJDBC {
 			stmt.executeUpdate(query);
 			stmt.close();
 			return true;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving an author " + query);
 			return false;
 		}
@@ -92,7 +92,7 @@ public class WrittenByDaoJDBC {
 			stmt.close();
 			
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 

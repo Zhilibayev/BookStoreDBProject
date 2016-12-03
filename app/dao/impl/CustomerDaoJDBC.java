@@ -40,7 +40,7 @@ public class CustomerDaoJDBC {
 	public CustomerDaoJDBC() {
 		try {
 			conn = getConnection();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			Logger.info("SQLException during database connection");
 		}
 	}
@@ -133,7 +133,7 @@ public class CustomerDaoJDBC {
 			transferData(rs, customers);
 			//
 			return customers;
-    	} catch (SQLException e) {
+    	} catch (Exception e) {
 			Logger.info(e.getMessage());
 			return null;
     	}
@@ -149,7 +149,7 @@ public class CustomerDaoJDBC {
 			stmt.executeUpdate("Update customer set username = '"+name+"' where cid = '"+cid+"'"); 
 			// 
 			return true; 
-		} catch (SQLException e) { 
+		} catch (Exception e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the name for customer cid = '"+cid+"'"); 
 			return false; 
 		} 
@@ -165,7 +165,7 @@ public class CustomerDaoJDBC {
 			stmt.executeUpdate("Update customer set address = '"+address+"' where cid = '"+cid+"'"); 
 			 
 			return true; 
-		} catch (SQLException e) { 
+		} catch (Exception e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the address for customer cid = '"+cid+"'"); 
 			return false; 
 		} 
@@ -181,7 +181,7 @@ public class CustomerDaoJDBC {
 			stmt.executeUpdate("Update customer set email = '"+email+"' where cid = '"+cid+"'"); 
 			 
 			return true; 
-		} catch (SQLException e) { 
+		} catch (Exception e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the email for customer cid = '"+cid+"'"); 
 			return false; 
 		} 
@@ -197,7 +197,7 @@ public class CustomerDaoJDBC {
 			stmt.executeUpdate("Update customer set phone = '"+phone+"' where cid = '"+cid+"'"); 
 			 
 			return true; 
-		} catch (SQLException e) { 
+		} catch (Exception e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the phone for customer cid = '"+cid+"'"); 
 			return false; 
 		} 
@@ -213,7 +213,7 @@ public class CustomerDaoJDBC {
 			stmt.executeUpdate("Update customer set password = '"+password+"' where cid = '"+cid+"'"); 
 			 
 			return true; 
-		} catch (SQLException e) { 
+		} catch (Exception e) { 
 			System.out.println(e.getMessage() + "SQLException when updating the password for customer cid = '"+cid+"'"); 
 			return false; 
 		} 

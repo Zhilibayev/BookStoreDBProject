@@ -32,7 +32,7 @@ public class AuthorDaoJDBC{
 	public AuthorDaoJDBC() {
 		try {
 			conn = getConnection();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println("SQLException during database connection");
 		}
 	}
@@ -66,7 +66,7 @@ public class AuthorDaoJDBC{
 			
 			return true;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving an author " + author.toString());
 			return false;
 		}
@@ -84,7 +84,7 @@ public class AuthorDaoJDBC{
 			
 			return true;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving an author " + query);
 			return false;
 		}
@@ -112,7 +112,7 @@ public class AuthorDaoJDBC{
 
 			return authors.get(0);
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -140,7 +140,7 @@ public class AuthorDaoJDBC{
 
 			return authors;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -164,7 +164,7 @@ public class AuthorDaoJDBC{
 			
 			return authors;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -196,7 +196,7 @@ public class AuthorDaoJDBC{
 			}
 			return authors;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}

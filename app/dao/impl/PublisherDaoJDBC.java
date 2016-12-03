@@ -39,7 +39,7 @@ public class PublisherDaoJDBC{
 	public PublisherDaoJDBC() {
 		try {
 			conn = getConnection();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println("SQLException during database connection");
 		}
 	}
@@ -71,7 +71,7 @@ public class PublisherDaoJDBC{
 			
 			return true;
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving a publisher " + publisher.toString());
 			return false;
 		}
@@ -87,7 +87,7 @@ public class PublisherDaoJDBC{
 			stmt.executeUpdate(query);
 			
 			return true;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage() + "SQLException when saving an author " + query);
 			return false;
 		}
@@ -104,7 +104,7 @@ public class PublisherDaoJDBC{
 			transferData(rs, publishers);
 			
 			return publishers.get(0);
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -119,7 +119,7 @@ public class PublisherDaoJDBC{
 			transferData(rs, publishers);
 			
 			return publishers;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
@@ -136,7 +136,7 @@ public class PublisherDaoJDBC{
 				System.out.println(publishers.get(i));
 			}
 			return publishers;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}

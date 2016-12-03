@@ -67,7 +67,7 @@ public class CartDaoJDBC {
 					+ cart.getCustomer().getId() + ");"); 
 			 
 			return true; 
-		} catch (SQLException e) { 
+		} catch (Exception e) { 
 			System.out.println(e.getMessage() + "SQLException when saving a book " + cart.toString()); 
 			return false; 
 		} 
@@ -86,7 +86,7 @@ public class CartDaoJDBC {
 			transferData(rs, books); 
 			 
 			return books; 
-		} catch (SQLException e) { 
+		} catch (Exception e) { 
 			System.out.println(e.getMessage()); 
 			return null; 
 		} 
@@ -103,7 +103,7 @@ public class CartDaoJDBC {
 				stmt.executeUpdate("Delete from cart where book_isbn = '"+cart.getBook().getIsbn()+"' and customer_cid ='"+cart.getCustomer().getId()+"';"); 
 				 
 				return true; 
-			} catch (SQLException e) { 
+			} catch (Exception e) { 
 				System.out.println(e.getMessage() + "SQLException when removing a book " + cart.toString()); 
 				return false; 
 			} 
