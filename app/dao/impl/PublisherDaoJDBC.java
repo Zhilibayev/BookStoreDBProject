@@ -111,7 +111,7 @@ public class PublisherDaoJDBC{
 	}
 
 	public List<Publisher> getPublisherByName(String name) {
-		List<Publisher> publishers = new ArrayList<>();
+		List<Publisher> publishers = new ArrayList<Publisher>();
 		try {
 			Statement stmt = conn.createStatement(); 
 			ResultSet rs = stmt.executeQuery(
